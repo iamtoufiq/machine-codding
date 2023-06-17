@@ -1,10 +1,16 @@
-import { useState } from "react";
-import { useGlobalHook } from "./Contexts";
-import { Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
-import Search from "./components/Search";
-const App = () => {
-  const booksData = [
+import { createContext, useState } from "react";
+import { useContext } from "react";
+const context = createContext();
+
+const Contexts = ({ children }) => {
+  const [selecteds, setSelecteds] = useState("none");
+  const handleCategoryChange = (e) => {
+    setSelecteds(e.target.value);
+  };
+  const onSearch = () => {
+    console.log("serach");
+  };
+  const books = [
     {
       id: 1,
       title: "Book 1",
@@ -78,37 +84,42 @@ const App = () => {
       category: "Want to Read",
     },
   ];
-  const { selecteds, setSelecteds, handleCategoryChange, onSearch, shelves } =
-    useGlobalHook();
-
+  const shelves = [
+    {
+      title: "Currently Reading",
+      books: books.filter((book) => book.category === "Currently Reading"),
+    },
+    {
+      title: "Want to Read",
+      books: books.filter((book) => book.category === "Want to Read"),
+    },
+    {
+      title: "Read",
+      books: books.filter((book) => book.category === "Read"),
+    },
+  ];
+  const [value, setValue] = useState("");
+  const handleSearch = (e) => {
+    setValue(e.target.value);
+  };
   return (
-    <div className="app">
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <Main
-              books={booksData}
-              handleCategoryChanges={handleCategoryChange}
-              setSelecteds={setSelecteds}
-              selecteds={selecteds}
-            />
-          }
-        ></Route>
-        <Route
-          path="/search"
-          element={
-            <Search
-              books={booksData}
-              setSelecteds={setSelecteds}
-              selecteds={selecteds}
-            />
-          }
-        ></Route>
-      </Routes>
-    </div>
+    <context.Provider
+      value={{
+        selecteds,
+        setSelecteds,
+        handleCategoryChange,
+        onSearch,
+        shelves,
+        handleSearch,
+      }}
+    >
+      {children}
+    </context.Provider>
   );
 };
-
-export default App;
+//global hook
+const useGlobalHook = () => {
+  return useContext(context);
+};
+export default Contexts;
+export { useGlobalHook };
