@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useGlobalHook } from "../Contexts";
 
 const Search = ({ onCategoryChange }) => {
-  const { shelves, selecteds, handleSearch } = useGlobalHook();
+  const { shelves, selecteds } = useGlobalHook();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchQueryChange = (e) => {
@@ -23,15 +23,17 @@ const Search = ({ onCategoryChange }) => {
   return (
     <div>
       <h1>Search Books</h1>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchQueryChange}
-        placeholder="Search books..."
-      />
-      <Link to="/">
-        <button>Back</button>
-      </Link>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchQueryChange}
+          placeholder="Search by name..."
+        />
+        <Link to="/">
+          <button style={{ padding: "6px 24px" }}>&laquo;</button>
+        </Link>
+      </div>
 
       {selecteds === "none" ? (
         <Shelf
