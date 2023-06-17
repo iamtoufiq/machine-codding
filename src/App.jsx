@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useGlobalHook } from "./Contexts";
 import { Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
@@ -78,8 +77,7 @@ const App = () => {
       category: "Want to Read",
     },
   ];
-  const { selecteds, setSelecteds, handleCategoryChange, onSearch, shelves } =
-    useGlobalHook();
+  const { selecteds, setSelecteds, handleCategoryChange } = useGlobalHook();
 
   return (
     <div className="app">

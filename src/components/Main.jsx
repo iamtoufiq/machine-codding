@@ -1,11 +1,12 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import Shelf from "./Shelf";
 import { Link } from "react-router-dom";
 import { useGlobalHook } from "../Contexts";
+import "./BookList.css";
 
 const Main = ({ handleCategoryChanges, selecteds }) => {
   const { shelves } = useGlobalHook();
+
   return (
     <div className="bookshelf-container">
       <h1>My Bookshelf</h1>
@@ -41,6 +42,7 @@ const Main = ({ handleCategoryChanges, selecteds }) => {
 
 Main.propTypes = {
   handleCategoryChanges: PropTypes.func.isRequired,
+  selecteds: PropTypes.string.isRequired,
 };
 
 export default Main;
