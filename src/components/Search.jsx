@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Shelf from "./Shelf";
 import { Link } from "react-router-dom";
 import { useGlobalHook } from "../Contexts";
-
+import "./BookList.css";
 const Search = ({ onCategoryChange }) => {
   const { shelves, selecteds } = useGlobalHook();
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,7 +23,10 @@ const Search = ({ onCategoryChange }) => {
   return (
     <div>
       <h1>Search Books</h1>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div
+        className="search-bar-container"
+        style={{ display: "flex", justifyContent: "space-around" }}
+      >
         <input
           type="text"
           value={searchQuery}
@@ -38,7 +41,7 @@ const Search = ({ onCategoryChange }) => {
       {selecteds === "none" ? (
         <Shelf
           key="Search Results"
-          title="Search Results"
+          //   title="Search Results"
           books={filteredBooks}
           onCategoryChange={onCategoryChange}
         />
