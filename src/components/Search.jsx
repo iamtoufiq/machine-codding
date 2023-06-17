@@ -33,7 +33,10 @@ const Search = ({ onCategoryChange }) => {
         onChange={handleSearchQueryChange}
         placeholder="Search books..."
       />
-      <button onClick={handleGoBack}>Back</button>
+      <Link to="/">
+        {" "}
+        <button>Back</button>
+      </Link>
 
       {selecteds === "none" ? (
         <Shelf
