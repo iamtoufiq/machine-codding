@@ -1,0 +1,27 @@
+.book {
+  margin: 0 20px;
+  position: relative;
+}
+
+img {
+  width: 200px !important;
+  object-fit: cover;
+  height: 300px;
+}
+
+.author {
+  color: rgb(238, 180, 21);
+}
+
+@media (max-width: 630px) {
+  img {
+    width: 150px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 530px) {
+  book {
+    margin: 0 10px;
+  }
+}
